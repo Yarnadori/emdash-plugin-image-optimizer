@@ -1,0 +1,74 @@
+{
+  "name": "emdash-plugin-image-optimizer",
+  "version": "0.1.0",
+  "description": "EmDash plugin that converts uploaded JPEG/PNG images to WebP or AVIF, keeping the originals. Converts on upload and in bulk.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "README.ja.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsdown src/index.ts --format esm --dts --clean --platform neutral",
+    "dev": "tsdown src/index.ts --format esm --dts --watch --platform neutral",
+    "typecheck": "tsc --noEmit -p .",
+    "test": "vitest run",
+    "prepublishOnly": "pnpm typecheck && pnpm test && pnpm build"
+  },
+  "keywords": [
+    "emdash",
+    "emdash-plugin",
+    "cms",
+    "image",
+    "webp",
+    "avif",
+    "media",
+    "optimization"
+  ],
+  "homepage": "https://yamadori.app",
+  "author": {
+    "name": "Yamadori",
+    "url": "https://yamadori.app"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "peerDependencies": {
+    "emdash": ">=1.2.0",
+    "sharp": ">=0.33.0"
+  },
+  "peerDependenciesMeta": {
+    "sharp": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261012.1",
+    "@emdash-cms/blocks": "^1.2.0",
+    "@types/node": "^26.6.5",
+    "emdash": "^1.2.0",
+    "sharp": "^0.35.5",
+    "tsdown": "^0.23.1",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.4"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.11.2",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@12.11.2"
+}
