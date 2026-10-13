@@ -9,6 +9,8 @@
 import { after, definePlugin } from "emdash";
 import type { PluginDescriptor, ResolvedPlugin } from "emdash";
 
+import { version } from "../package.json" with { type: "json" };
+
 import { handleAdmin } from "./admin.js";
 import { BULK_CRON_TASK, runBulkBatch } from "./bulk.js";
 import { convertMedia, isConvertible } from "./convert.js";
@@ -17,7 +19,8 @@ import type { ConvertSettings, OutputFormat } from "./settings.js";
 import { SETTINGS_SCHEMA, loadSettings } from "./settings.js";
 
 export const PLUGIN_ID = "image-convert";
-export const PLUGIN_VERSION = "0.1.0";
+/** Single source of truth: the npm package version. */
+export const PLUGIN_VERSION: string = version;
 const PACKAGE_NAME = "emdash-plugin-image-optimizer";
 
 export interface ImageOptimizerOptions {

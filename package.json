@@ -1,6 +1,6 @@
 {
   "name": "emdash-plugin-image-optimizer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "EmDash plugin that converts uploaded JPEG/PNG images to WebP or AVIF, keeping the originals. Converts on upload and in bulk.",
   "type": "module",
   "main": "./dist/index.js",

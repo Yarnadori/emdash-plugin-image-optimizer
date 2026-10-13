@@ -1,4 +1,5 @@
 import { validateBlocks } from "@emdash-cms/blocks";
+import packageJson from "../package.json" with { type: "json" };
 import { describe, expect, it, vi } from "vitest";
 
 import { handleAdmin, parseInteraction } from "../src/admin.js";
@@ -153,6 +154,7 @@ describe("plugin definition", () => {
 		expect(plugin.version).toBe(descriptor.version);
 		expect([...plugin.capabilities].sort()).toEqual([...(descriptor.capabilities ?? [])].sort());
 		expect(plugin.routes).toHaveProperty("admin");
+		expect(plugin.version).toBe(packageJson.version);
 	});
 
 	it("converts on upload when enabled", async () => {
