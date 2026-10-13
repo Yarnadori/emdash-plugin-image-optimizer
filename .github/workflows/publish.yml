@@ -1,0 +1,55 @@
+name: Publish to npm
+
+# Publishes when a GitHub release is published (tag: v<version>).
+# Authenticates with npm Trusted Publishing (OIDC); no npm token is stored.
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: npm
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Check versions match the release tag
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          pkg=$(node -p "require('./package.json').version")
+          plugin=$(sed -n 's/^export const PLUGIN_VERSION = "\(.*\)";$/\1/p' src/index.ts)
+          echo "tag=$TAG package.json=$pkg PLUGIN_VERSION=$plugin"
+          if [ "$TAG" != "v$pkg" ] || [ "$plugin" != "$pkg" ]; then
+            echo "::error::Release tag, package.json version, and PLUGIN_VERSION must match"
+            exit 1
+          fi
+
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm build
+
+      - name: Pack
+        run: pnpm pack --pack-destination "$RUNNER_TEMP/pack"
+
+      # npm (>= 11.5.1) performs the OIDC exchange. It runs outside the
+      # project directory because package.json pins pnpm via devEngines.
+      - name: Publish
+        working-directory: ${{ runner.temp }}/pack
+        run: |
+          npm install -g npm@latest
+          npm publish --provenance --access public ./*.tgz

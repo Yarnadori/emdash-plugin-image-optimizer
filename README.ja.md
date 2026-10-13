@@ -1,5 +1,9 @@
 # emdash-plugin-image-optimizer
 
+[![npm version](https://img.shields.io/npm/v/emdash-plugin-image-optimizer.svg)](https://www.npmjs.com/package/emdash-plugin-image-optimizer)
+[![CI](https://github.com/Yarnadori/emdash-plugin-image-optimizer/actions/workflows/ci.yml/badge.svg)](https://github.com/Yarnadori/emdash-plugin-image-optimizer/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+
 [English](./README.md) | 日本語
 
 [EmDash](https://github.com/emdash-cms/emdash) 用のプラグインです。アップロードした JPEG / PNG 画像を **WebP** または **AVIF** に変換し、**元の画像はそのまま残して**、変換後の画像を新しいメディアとして保存します。

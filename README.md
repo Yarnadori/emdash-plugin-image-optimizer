@@ -1,5 +1,9 @@
 # emdash-plugin-image-optimizer
 
+[![npm version](https://img.shields.io/npm/v/emdash-plugin-image-optimizer.svg)](https://www.npmjs.com/package/emdash-plugin-image-optimizer)
+[![CI](https://github.com/Yarnadori/emdash-plugin-image-optimizer/actions/workflows/ci.yml/badge.svg)](https://github.com/Yarnadori/emdash-plugin-image-optimizer/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+
 English | [日本語](./README.ja.md)
 
 A plugin for [EmDash](https://github.com/emdash-cms/emdash) that converts uploaded JPEG / PNG images to **WebP** or **AVIF**. It **keeps the original image** and saves the converted image as a new media item.
