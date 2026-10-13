@@ -35,7 +35,14 @@
     "media",
     "optimization"
   ],
-  "homepage": "https://yamadori.app",
+  "homepage": "https://github.com/Yarnadori/emdash-plugin-image-optimizer#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yarnadori/emdash-plugin-image-optimizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Yarnadori/emdash-plugin-image-optimizer/issues"
+  },
   "author": {
     "name": "Yamadori",
     "url": "https://yamadori.app"
